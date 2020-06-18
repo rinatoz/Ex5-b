@@ -30,13 +30,17 @@ namespace itertools
                         auto operator*() const { 
                                 return sum;
                         }
-                        iterator& operator++() {
-                        
+                       iterator& operator++() {
+                                ++inner_iter;
+                                if(inner_iter != end_iter)
+                                        sum = func(sum, *inner_iter);
                                 return *this;
                         }
                         iterator& operator++(int) {
                                 iterator copy = *this;
-                           
+                                ++inner_iter;
+                                if(inner_iter != end_iter)
+                                        sum = func(sum, *inner_iter);
                                 return copy;
                         }
                         iterator& operator=(const iterator& other) {
